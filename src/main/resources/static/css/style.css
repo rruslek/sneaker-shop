@@ -1,0 +1,22 @@
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+  html {
+    height: -webkit-fill-available;
+  }
+
+  main {
+    /* height: -webkit-fill-available; */
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .img-thumbnail {
+    border: 0;
+    }
+  
+    .nav-link {
+      cursor: pointer;
+    }
