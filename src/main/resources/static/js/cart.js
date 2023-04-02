@@ -27,8 +27,8 @@ const deleteFromCart = (id) => {
 }
 
 const createOrder = () => {
-    const city = document.getElementById("city")
-    const url = "http://localhost:8080/order/Пермь";
+    const city = getCookie("city");
+    const url = "http://localhost:8080/order/" + city;
     $.ajax({
         type: "POST",
         url: url
