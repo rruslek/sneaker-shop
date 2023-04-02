@@ -1,7 +1,6 @@
 package com.rruslek.sneakershopa.controllers;
 
 import com.rruslek.sneakershopa.models.Cart;
-import com.rruslek.sneakershopa.models.Item;
 import com.rruslek.sneakershopa.models.ItemInCart;
 import com.rruslek.sneakershopa.repo.CartRepository;
 import com.rruslek.sneakershopa.repo.ItemInCartRepository;
@@ -13,10 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 @Controller
 public class CartController {
@@ -47,6 +42,12 @@ public class CartController {
     ResponseEntity<Integer> deleteItemFromCart(@PathVariable("item_id") Long itemId, HttpSession session){
         int count = cartService.deleteItem(itemId, session);
         return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    @PostMapping("/order/{city}")
+    ResponseEntity<Integer> addItemToCart(@PathVariable("city") String city, HttpSession session){
+        cartService.createOrder(city, session);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
 }

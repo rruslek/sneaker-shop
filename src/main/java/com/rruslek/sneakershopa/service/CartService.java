@@ -3,9 +3,11 @@ package com.rruslek.sneakershopa.service;
 import com.rruslek.sneakershopa.models.Cart;
 import com.rruslek.sneakershopa.models.Item;
 import com.rruslek.sneakershopa.models.ItemInCart;
+import com.rruslek.sneakershopa.models.Order;
 import com.rruslek.sneakershopa.repo.CartRepository;
 import com.rruslek.sneakershopa.repo.ItemInCartRepository;
 import com.rruslek.sneakershopa.repo.ItemRepository;
+import com.rruslek.sneakershopa.repo.OrderRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class CartService {
 
     @Autowired
     private ItemInCartRepository itemInCartRepo;
+
+    @Autowired
+    private OrderRepository orderRepo;
 
     @Transactional
     public Integer addItem(Long Item_id, HttpSession session){
@@ -60,5 +65,14 @@ public class CartService {
         cartRepo.save(cart);
 
         return cart.getCount();
+    }
+    @Transactional
+    public void createOrder(String city, HttpSession session){
+        String cartSession = session.getId();
+        Cart cart = cartRepo.findByName(cartSession);
+        if (cart.getCount() > 0){
+            orderRepo.save(new Order(cart, city));
+            session.invalidate();
+        }
     }
 }

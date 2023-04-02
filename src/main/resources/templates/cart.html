@@ -44,7 +44,7 @@
         <div class="fs-4 col-md-3">Итого</div>
         <div th:text="${cart.price} + '₽'" class="fs-4 col-md-8 text-end"/>
       </div>
-      <button type="button" class="btn btn-m btn-block btn-primary my-3 px-4 buy mt-3" id="addItem">Оформить заказ</button>
+      <button onclick="createOrder()" type="button" class="btn btn-m btn-block btn-primary my-3 px-4 mt-3" id="addItem">Оформить заказ</button>
     </div>
   </div>
 </main>

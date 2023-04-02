@@ -26,6 +26,18 @@ const deleteFromCart = (id) => {
     });
 }
 
+const createOrder = () => {
+    const city = document.getElementById("city")
+    const url = "http://localhost:8080/order/Пермь";
+    $.ajax({
+        type: "POST",
+        url: url
+    }).done(function(response) {
+        location.reload();
+    }).fail(function() {
+    });
+}
+
 const items = document.getElementsByClassName("buy");
 
 for (let i=0;i<items.length;i++){

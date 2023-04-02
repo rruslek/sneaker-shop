@@ -1,6 +1,5 @@
 package com.rruslek.sneakershopa.models;
 
-import com.rruslek.sneakershopa.enums.SneakerTypes;
 import jakarta.persistence.*;
 
 import java.util.List;
