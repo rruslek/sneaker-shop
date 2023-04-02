@@ -1,12 +1,33 @@
-const addToCart = (counter) => {
-    if (counter.innerHTML == "") counter.innerHTML = 1
-    else counter.innerHTML = parseInt(counter.innerHTML) + 1
-}  
+const addToCart = (id) => {
+    const counter = document.querySelector("#counter");
+    const url = "http://localhost:8080/cart/add/" + id;
+    $.ajax({
+        type: "POST",
+        url: url
+    }).done(function(response) {
+        counter.innerHTML = response
+        location.reload();
+    }).fail(function() {
+        counter.innerHTML = "0"
+    });
+}
+
+const deleteFromCart = (id) => {
+    const counter = document.querySelector("#counter");
+    const url = "http://localhost:8080/cart/add/" + id;
+    $.ajax({
+        type: "DELETE",
+        url: url
+    }).done(function(response) {
+        counter.innerHTML = response
+        location.reload();
+    }).fail(function() {
+        counter.innerHTML = "0"
+    });
+}
 
 const items = document.getElementsByClassName("buy");
-const counter = document.querySelector("#counter");
 
 for (let i=0;i<items.length;i++){
-
-    items[i].onclick = function(){addToCart(counter)};
+    items[i].onclick = function(){addToCart(items[i].id)};
 }

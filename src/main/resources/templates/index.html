@@ -66,12 +66,13 @@
                         <div th:text="${el.brand}"/>
                         <div th:text="${el.model}"/>
                         <h5 th:text="${el.price} + '₽'"/>
-                        <button type="button" class="btn btn-m btn-block btn-primary my-3 px-4 buy" id="addItem">В корзину</button>
+                        <button th:id="${el.id}" type="submit" class="btn btn-m btn-block btn-primary my-3 px-4 buy">В корзину</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <h1 th:text="${sessionId}"/>
 </main>
 
 <div class="modal fade" id="chooseCityModal" role="dialog">

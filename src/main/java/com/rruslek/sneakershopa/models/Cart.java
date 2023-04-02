@@ -6,20 +6,27 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="items")
-public class Item {
-    public Item(){}
+@Table(name="carts")
+public class Cart {
+    public Cart(){}
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String brand, model, img_url;
+    public Cart(String name) {
+        this.name = name;
+    }
 
-    private int price;
+    @Column(name = "name")
+    private String name;
 
-    private SneakerTypes type;
+    @Column(name = "count")
+    private int count = 0;
 
-    @OneToMany(mappedBy = "item")
+    @Column(name = "total_price")
+    private int price = 0;
+
+    @OneToMany(mappedBy = "cart")
     private List<ItemInCart> item_in_cart;
 
     public Long getId() {
@@ -30,28 +37,20 @@ public class Item {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getName() {
+        return name;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getModel() {
-        return model;
+    public int getCount() {
+        return count;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getImg_url() {
-        return img_url;
-    }
-
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getPrice() {
@@ -62,14 +61,6 @@ public class Item {
         this.price = price;
     }
 
-    public SneakerTypes getType() {
-        return type;
-    }
-
-    public void setType(SneakerTypes type) {
-        this.type = type;
-    }
-
     public List<ItemInCart> getItem_in_cart() {
         return item_in_cart;
     }
@@ -77,4 +68,5 @@ public class Item {
     public void setItem_in_cart(List<ItemInCart> item_in_cart) {
         this.item_in_cart = item_in_cart;
     }
+
 }

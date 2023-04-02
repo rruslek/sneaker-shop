@@ -1,7 +1,7 @@
 package com.rruslek.sneakershopa.repo;
 
 import com.rruslek.sneakershopa.models.Item;
-import com.rruslek.sneakershopa.vars.SneakerTypes;
+import com.rruslek.sneakershopa.enums.SneakerTypes;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
