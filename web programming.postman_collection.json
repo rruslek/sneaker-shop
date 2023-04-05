@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "680313a6-9456-4fa6-8d08-b901ac63a9ea",
+		"name": "web programming",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22261694"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код статуса 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Тело ответа не пустое\", function () {",
+							"  const responseJson = pm.response.json();",
+							"  emptyResponse = !Object.keys(responseJson).length;",
+							"  pm.expect(emptyResponse).to.be.false;",
+							"});",
+							"",
+							"pm.test(\"Заголовок Content-Type соответствует application/json; charset=utf-8\", () => {",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+							"});",
+							"",
+							"pm.test(\"Время ответа меньше 200мс\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-json-server.typicode.com/typicode/demo/posts",
+					"protocol": "https",
+					"host": [
+						"my-json-server",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"typicode",
+						"demo",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
