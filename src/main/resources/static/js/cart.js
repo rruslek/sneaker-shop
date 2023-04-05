@@ -1,3 +1,10 @@
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 const addToCart = (id) => {
     const counter = document.querySelector("#counter");
     const url = "http://localhost:8080/cart/add/" + id;

@@ -1,51 +1,61 @@
-const chooseFilter = (array, element) => {
-    element.classList.add("active");
-    for (let i = 0;i < array.length;i++) {
-        if (array[i] !== element) {
-            array[i].classList.remove("active");
-        }
+const chooseFilter = (element) => {
+    if (sessionStorage.getItem("filter") == element.id) {
+        sessionStorage.setItem("filter", "ALL");
     }
-    window.history.replaceState(null, null, "?type" + element.id);
-    element.onclick = function(){removeFilter(array, element)};
-}  
-
-const removeFilter = (array, element) => {
-    element.classList.remove("active");
-    element.onclick = function(){chooseFilter(array, element)};
+    else {
+        sessionStorage.setItem("filter", element.id);
+    }
+    checkSortFilter();
 }
 
+
 const sortBy = (element) => {
-    document.querySelector("#sort").innerHTML = element.innerHTML;
-    console.log(document.querySelector("#sort").innerHTML);
-    console.log(element.innerHTML);
-}  
+    sessionStorage.setItem("sort", element.id);
+    checkSortFilter();
+}
+
+const checkSortFilter = () => {
+    const sortMethod = sessionStorage.getItem("sort");
+    const filterType = sessionStorage.getItem("filter");
+    window.location.replace("http://localhost:8080/?sortDir="+sortMethod+"&type="+filterType);
+}
+
+if (sessionStorage.getItem("sort") == undefined) sessionStorage.setItem("sort","asc");
+if (sessionStorage.getItem("filter") == undefined) sessionStorage.setItem("filter","ALL");
+
+if (window.location.href == "http://localhost:8080/") {
+    sessionStorage.setItem("sort","asc");
+    sessionStorage.setItem("filter","ALL");
+}
+
+const sort = sessionStorage.getItem("sort");
+const filter = sessionStorage.getItem("filter");
 
 
-const casual = document.querySelector("#casual");
-const sport = document.querySelector("#sport");
-const low = document.querySelector("#low");
-const high = document.querySelector("#high");
+const casual = document.querySelector("#CASUAL");
+const sport = document.querySelector("#RUNNING");
+const low = document.querySelector("#LOW");
+const high = document.querySelector("#HIGH");
 
 const array = [casual, sport, low, high];
 
-casual.onclick = function(){chooseFilter(array, casual)};
-sport.onclick = function(){chooseFilter(array, sport)};
-low.onclick = function(){chooseFilter(array, low)};
-high.onclick = function(){chooseFilter(array, high)};
-
-
-const ascending = document.querySelector("#ascending")
-const descending = document.querySelector("#descending")
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-
-
-if (urlParams.get('sortDir') === "desc") {
-    sortBy(descending);
-    console.log('убывание');
+for (let i = 0;i < array.length;i++) {
+    if (array[i].id == filter) {
+        array[i].classList.add("active");
+    }
 }
-if (urlParams.get('sortDir') === "asc") {
-    sortBy(ascending);
-    console.log('возрастание');
-}
+
+casual.onclick = function(){chooseFilter(casual)};
+sport.onclick = function(){chooseFilter(sport)};
+low.onclick = function(){chooseFilter(low)};
+high.onclick = function(){chooseFilter(high)};
+
+
+const ascending = document.querySelector("#asc")
+const descending = document.querySelector("#desc")
+
+ascending.onclick = function(){sortBy(ascending)};
+descending.onclick = function(){sortBy(descending)};
+
+if (sort == "desc") document.querySelector("#sort").innerHTML = descending.innerHTML;
+else document.querySelector("#sort").innerHTML = ascending.innerHTML;

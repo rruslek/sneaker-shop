@@ -25,22 +25,22 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a th:href="@{/(type=CASUAL)}" class="nav-link" id="casual">
+                    <a class="nav-link" id="CASUAL">
                         Повседневные кроссовки
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/(type=RUNNING)}" class="nav-link" id="sport">
+                    <a class="nav-link" id="RUNNING">
                         Беговые кроссовки
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/(type=LOW)}" class="nav-link" id="low">
+                    <a class="nav-link" id="LOW">
                         Низкие кеды
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/(type=HIGH)}" class="nav-link" id="high">
+                    <a class="nav-link" id="HIGH">
                         Высокие кеды
                     </a>
                 </li>
@@ -53,8 +53,8 @@
                     <a id="sort" class="link-primary">возрастанию цены</a>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a th:href="@{/(sortDir=asc)}" class="dropdown-item" id="ascending">возрастанию цены</a></li>
-                    <li><a th:href="@{/(sortDir=desc)}" class="dropdown-item" id="descending">убыванию цены</a></li>
+                    <li><a class="dropdown-item" id="asc">возрастанию цены</a></li>
+                    <li><a class="dropdown-item" id="desc">убыванию цены</a></li>
                 </ul>
             </div>
         </div>
